@@ -2,39 +2,32 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import BottomNavigation from "@material-ui/core/BottomNavigation";
 import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
-import FolderIcon from "@material-ui/icons/Folder";
-import RestoreIcon from "@material-ui/icons/Restore";
-import FavoriteIcon from "@material-ui/icons/Favorite";
-import LocationOnIcon from "@material-ui/icons/LocationOn";
+import WhatshotIcon from '@material-ui/icons/Whatshot';
+import RemoveRedEyeIcon from '@material-ui/icons/RemoveRedEye';
+import EditIcon from '@material-ui/icons/Edit';
+import FaceIcon from '@material-ui/icons/Face';
 import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles({
   root: {
     width: '%100',
+    background: "#ccc"
   },
 });
 
 export default function LabelBottomNavigation() {
   const classes = useStyles();
   const history = useHistory();
-  const [value, setValue] = React.useState("notishot");
+  const [value, setValue] = React.useState("");
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
-    history.push("/todo-noticia")
+    history.push("/"+ newValue)
   };
-  const handleChangeNotishot  = (event, newValue) => {
-    setValue(newValue);
-    history.push("/");
-  };
-  const handleChangeTodoNoticia  = (event, newValue) => {
-    setValue(newValue);
-    history.push("/todo-noticia");
-  };
-  
+
 
   return (
-    <div className="container content-justify-between">
+    <div className="content-justify-between">
     <BottomNavigation
       value={value}
       onChange={handleChange}
@@ -43,25 +36,23 @@ export default function LabelBottomNavigation() {
       
         <BottomNavigationAction
           label="Notishot"
-          value="notishot"
-          onChange={handleChangeNotishot}
-          icon={<RestoreIcon />}
+          value=""
+          icon={<WhatshotIcon />}
         />
         <BottomNavigationAction
           label="Noticias"
           value="todo-noticia"
-          onChange={handleChangeTodoNoticia}
-          icon={<FavoriteIcon />}
+          icon={<RemoveRedEyeIcon />}
         />
         <BottomNavigationAction
-          label="Nearby"
-          value="nearby"
-          icon={<LocationOnIcon />}
+          label="Editar"
+          value="editar"
+          icon={<EditIcon />}
         />
         <BottomNavigationAction
-          label="Folder"
-          value="folder"
-          icon={<FolderIcon />}
+          label="Cuenta"
+          value="cuenta"
+          icon={<FaceIcon />}
         />
     </BottomNavigation>
       </div>
